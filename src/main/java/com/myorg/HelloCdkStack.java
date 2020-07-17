@@ -1,8 +1,7 @@
 package com.myorg;
 
-import software.amazon.awscdk.core.Construct;
-import software.amazon.awscdk.core.Stack;
-import software.amazon.awscdk.core.StackProps;
+import software.amazon.awscdk.core.*;
+import software.amazon.awscdk.services.s3.Bucket;
 
 public class HelloCdkStack extends Stack {
     public HelloCdkStack(final Construct scope, final String id) {
@@ -13,5 +12,9 @@ public class HelloCdkStack extends Stack {
         super(scope, id, props);
 
         // The code that defines your stack goes here
+        Bucket.Builder.create(this, "cdk-app-first-bucket-mjs")
+                      .versioned(true)
+                      .removalPolicy(RemovalPolicy.DESTROY)
+                      .build();
     }
 }
